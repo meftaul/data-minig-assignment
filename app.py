@@ -7,17 +7,25 @@ import codecs
 import streamlit.components.v1 as components
 from streamlit_pandas_profiling import st_profile_report
 
+st.set_page_config(
+    page_title="Data Mining: Assignment 02",
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
 @st.cache
 def load_data(data_file):
     return pd.read_csv(data_file, error_bad_lines=False)
 
 def main():
-    menu = ['Home', 'Data Profile']
+    st.sidebar.title('Options')
+    menu = ['Home', 'Data Exploration']
     choice = st.sidebar.selectbox("Menu", menu)
-    if choice  == 'Data Profile':
+    if choice  == 'Data Exploration':
         st.markdown('''
         <h1 style="text-align: center">
-        Exploratory Data Analysis
+        Exploration
         </h1>''', unsafe_allow_html=True)
         # datafile = st.file_uploader('Upload a CSV file.', type=['csv', 'txt'])
 
@@ -26,9 +34,13 @@ def main():
         #     # st.dataframe(df.head())
         #     profile = ProfileReport(df)
         #     st_profile_report(profile)
-        df = load_data('Assignment2.csv')
-        profile = ProfileReport(df)
-        st_profile_report(profile)
+        # df = load_data('Assignment2.csv')
+        # profile = ProfileReport(df)
+        # st_profile_report(profile)
+
+        HtmlFile = open("report.html", 'r', encoding='utf-8')
+        source_code = HtmlFile.read()
+        components.html(source_code, height = 1000, scrolling=True)
 
     else:
         st.markdown('''
