@@ -34,13 +34,9 @@ def main():
         #     # st.dataframe(df.head())
         #     profile = ProfileReport(df)
         #     st_profile_report(profile)
-        # df = load_data('Assignment2.csv')
-        # profile = ProfileReport(df)
-        # st_profile_report(profile)
-
-        HtmlFile = open("report.html", 'r', encoding='utf-8')
-        source_code = HtmlFile.read()
-        components.html(source_code, height = 1000, scrolling=True)
+        df = load_data('Assignment2.csv')
+        profile = ProfileReport(df)
+        st_profile_report(profile)
 
     else:
         st.markdown('''
